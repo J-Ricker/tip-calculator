@@ -38,7 +38,12 @@
         let people = users.value;
         let quality = services.value;
 
-        if (bill === '' || bill <= "0" || (people === '' || people <= "0") || quality === "0") {
+        //console.log(typeof bill);
+        //console.log(parseInt(bill));
+        
+        
+
+        if (bill === '' || bill <= '0' || (people === '' || people <= '0') || quality === "0") {
             feedback.classList.add('showItem', 'alert-danger');
             feedback.innerHTML = `
                 <p>Please check the values</p>
@@ -56,10 +61,46 @@
             `;
             loader.classList.add('showItem');
             setTimeout(function () {
-                feedback.classList.remove('showItem');
                 loader.classList.remove('showItem');
+                feedback.classList.remove('showItem', 'alert-success');
+                
+                showResults(bill, people, quality);
+                clearForm();
             }, 3000);
         }
-    })
+    });
+
+    // show results
+    function showResults (bill, people, quality) {
+        let percent = 0;
+        let parsedBill = parseInt(bill);
+        
+        if (quality === '1') {
+            percent = 0.2;
+        } else if (quality === '2') {
+            percent = 0.1;
+        } else if (quality === '3') {
+            percent = 0.02;
+        }
+        //console.log(percent);
+        
+        let tipAmount = parsedBill * percent;
+        //console.log(tipAmount);
+        let total = parsedBill + tipAmount;
+        let person = total / parseInt(people);
+
+        results.classList.add('showItem');
+        document.getElementById('tip-amount').textContent = tipAmount;
+        document.getElementById('total-amount').textContent = total;
+        document.getElementById('person-amount').textContent = person.toFixed(2);
+
+    }
+
+    // clear form
+    function clearForm () {
+        amount.value = '';
+        users.value = '';
+        service.value = '';
+    }
 
 })();
