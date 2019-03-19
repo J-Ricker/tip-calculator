@@ -11,7 +11,7 @@
 
 body {
     background: var(--lightBlue);
-  }
+}
 
 .card-title {
     background: var(--darkBlue);
@@ -24,7 +24,7 @@ body {
     border: none !important;
     border-radius: 0.5rem !important;
 }
-  
+
 .bill-icon,
 .user-icon {
     background: var(--darkBlue) !important;
@@ -43,7 +43,7 @@ body {
 }
 
 /* feedback */
-  .feedback {
+.feedback {
     display: none;
 }
 
